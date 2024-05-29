@@ -1,33 +1,65 @@
+/* /styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.bg-pomodoro {
+  background-image: url('./images/pomodoro.png');
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.bg-small-break {
+  background-image: url('./images/short-break.png');
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.bg-long-break {
+  background-image: url('./images/long-break.png');
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.tab {
+  @apply p-4 cursor-pointer text-white transition duration-300 ease-in-out;
+}
+.tab-selected {
+  @apply font-bold border-b-2 border-white;
+}
+
+.timer {
+  @apply text-center my-8 text-white;
+}
+.timer-name {
+  @apply text-xl font-semibold text-white;
+}
+.timer-display {
+  @apply text-5xl font-mono text-white;
+}
+.timer-button {
+  @apply mt-4 px-4 py-2 bg-blue-500 text-white rounded;
+}
+
+.blurred-gui {
+  @apply bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg p-6 rounded-lg shadow-lg transition duration-300 ease-in-out relative w-full max-w-lg;
+}
+
+.log-icon {
+  @apply absolute top-2 right-2 text-gray-300 cursor-pointer;
+}
+
+.fixed-log {
+  @apply fixed inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out;
+}
+
+.modal-background {
+  @apply absolute inset-0 bg-black bg-opacity-50;
+}
+
+.modal-content {
+  @apply bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg p-6 rounded-lg shadow-lg relative w-full max-w-lg h-full overflow-y-auto;
 }
