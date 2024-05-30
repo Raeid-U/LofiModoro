@@ -1,3 +1,5 @@
+// src/app/page.jsx
+
 'use client'
 import React, { useState } from 'react';
 import TimerTab from './components/TimerTab';
@@ -9,7 +11,7 @@ import dayjs from 'dayjs';
 
 const timers = [
   { name: 'Pomodoro Sprint', duration: 25, bg: 'bg-pomodoro' },
-  { name: 'Small Break', duration: 5, bg: 'bg-small-break' },
+  { name: 'Small Break', duration: 0.5, bg: 'bg-small-break' },
   { name: 'Long Break', duration: 15, bg: 'bg-long-break' },
 ];
 
@@ -25,8 +27,8 @@ const Home = () => {
 
   const handleTimerComplete = (timer) => {
     const endTime = dayjs();
-    const date = startTime.format('MMMM D, YYYY');
-    const startTimeFormatted = startTime.format('h:mm A');
+    const date = startTime ? startTime.format('MMMM D, YYYY') : '';
+    const startTimeFormatted = startTime ? startTime.format('h:mm A') : '';
     const endTimeFormatted = endTime.format('h:mm A');
 
     setLog([...log, {

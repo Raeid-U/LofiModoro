@@ -1,4 +1,4 @@
-// /components/MusicPlayer.jsx
+// components/MusicPlayer.jsx
 import React from 'react';
 import SpotifyPlayer from 'react-spotify-web-playback';
 
