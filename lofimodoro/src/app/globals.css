@@ -4,24 +4,24 @@
 @tailwind utilities;
 
 .bg-pomodoro {
-  background-image: url('./images/pomodoro.png');
+  background-image: url('./images/small-break.jpg');
   background-size: cover;
   background-position: center;
-  transition: background-image 0.5s ease-in-out;
+  transition: background-image 0.5s ease-in;
 }
 
 .bg-small-break {
   background-image: url('./images/small-break.jpg');
   background-size: cover;
   background-position: center;
-  transition: background-image 0.5s ease-in-out;
+  transition: background-image 0.5s ease-in;
 }
 
 .bg-long-break {
-  background-image: url('./images/long-break.png');
+  background-image: url('./images/small-break.jpg');
   background-size: cover;
   background-position: center;
-  transition: background-image 0.5s ease-in-out;
+  transition: background-image 0.5s ease-in;
 }
 
 .tab {
