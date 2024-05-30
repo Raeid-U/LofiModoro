@@ -1,5 +1,3 @@
-// src/app/page.jsx
-
 'use client'
 import React, { useState } from 'react';
 import TimerTab from './components/TimerTab';
@@ -11,7 +9,7 @@ import dayjs from 'dayjs';
 
 const timers = [
   { name: 'Pomodoro Sprint', duration: 25, bg: 'bg-pomodoro' },
-  { name: 'Small Break', duration: 0.5, bg: 'bg-small-break' },
+  { name: 'Small Break', duration: 1, bg: 'bg-small-break' },
   { name: 'Long Break', duration: 15, bg: 'bg-long-break' },
 ];
 
@@ -27,16 +25,17 @@ const Home = () => {
 
   const handleTimerComplete = (timer) => {
     const endTime = dayjs();
-    const date = startTime ? startTime.format('MMMM D, YYYY') : '';
     const startTimeFormatted = startTime ? startTime.format('h:mm A') : '';
     const endTimeFormatted = endTime.format('h:mm A');
 
-    setLog([...log, {
-      name: timer.name,
-      date: date,
-      startTime: startTimeFormatted,
-      endTime: endTimeFormatted,
-    }]);
+    setLog((prevLog) => [
+      {
+        name: timer.name,
+        startTime: startTimeFormatted,
+        endTime: endTimeFormatted,
+      },
+      ...prevLog,
+    ]);
 
     setStartTime(null);
   };
@@ -59,7 +58,7 @@ const Home = () => {
           ))}
         </div>
         <div className="blurred-gui relative p-4 bg-white bg-opacity-20 backdrop-blur-lg rounded-lg">
-          <div className="log-icon absolute top-4 right-4 text-gray-200 hover:text-gray-400 cursor-pointer" onClick={toggleLog}>
+          <div className="log-icon absolute top-4 right-4 text-gray-200 hover:text-white cursor-pointer" onClick={toggleLog}>
             <FaHistory size={24} />
           </div>
           <Timer timer={selectedTimer} onStart={handleTimerStart} onComplete={handleTimerComplete} />

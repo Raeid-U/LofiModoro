@@ -11,24 +11,30 @@ const Log = ({ log, onClose }) => {
         </div>
         <h2 className="text-center text-white text-xl font-bold mb-4">Completed Timers</h2>
         <div className="text-white">
-          <div className="flex justify-between mb-2">
-            <span>Session Name</span>
-            <span>Date</span>
-            <span>Start Time</span>
-            <span>End Time</span>
-          </div>
-          {log.length > 0 ? (
-            log.map((entry, index) => (
-              <div key={index} className="flex justify-between mb-2">
-                <span>{entry.name}</span>
-                <span>{entry.date}</span>
-                <span>{entry.startTime}</span>
-                <span>{entry.endTime}</span>
-              </div>
-            ))
-          ) : (
-            <p>No completed sessions yet.</p>
-          )}
+          <table className="w-full text-left">
+            <thead>
+              <tr>
+                <th className="py-2">Session Name</th>
+                <th className="py-2">Start Time</th>
+                <th className="py-2">End Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {log.length > 0 ? (
+                log.map((entry, index) => (
+                  <tr key={index}>
+                    <td className="py-2">{entry.name}</td>
+                    <td className="py-2">{entry.startTime}</td>
+                    <td className="py-2">{entry.endTime}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="3" className="text-center py-4">No completed sessions yet.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
