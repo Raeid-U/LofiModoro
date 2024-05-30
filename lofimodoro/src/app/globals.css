@@ -11,7 +11,7 @@
 }
 
 .bg-small-break {
-  background-image: url('./images/short-break.png');
+  background-image: url('./images/small-break.jpg');
   background-size: cover;
   background-position: center;
   transition: background-image 0.5s ease-in-out;
@@ -25,7 +25,7 @@
 }
 
 .tab {
-  @apply p-4 cursor-pointer text-white transition duration-300 ease-in-out;
+  @apply p-4 cursor-pointer text-white transition duration-300 ease-in-out bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg rounded-md mx-1;
 }
 .tab-selected {
   @apply font-bold border-b-2 border-white;
@@ -61,5 +61,5 @@
 }
 
 .modal-content {
-  @apply bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg p-6 rounded-lg shadow-lg relative w-full max-w-lg h-full overflow-y-auto;
+  @apply bg-white bg-opacity-30 backdrop-filter backdrop-blur-lg p-6 rounded-lg shadow-lg relative w-full max-w-lg h-96 overflow-y-auto;
 }

@@ -1,26 +1,35 @@
-// /components/Log.jsx
+// components/Log.jsx
 import React from 'react';
+import { FaTimes } from 'react-icons/fa';
 
-const Log = ({ log, isOpen, onClose }) => {
+const Log = ({ log, onClose }) => {
   return (
-    <div className={`fixed-log ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-      <div className="modal-background" onClick={onClose}></div>
-      <div className="modal-content">
-        <h2 className="text-2xl font-bold mb-4 text-white">Log</h2>
-        {log.length === 0 ? (
-          <p className="text-white">No timers completed yet.</p>
-        ) : (
-          <ul className="space-y-2">
-            {log.map((entry, index) => (
-              <li key={index} className="text-white">
-                {entry}
-              </li>
-            ))}
-          </ul>
-        )}
-        <button onClick={onClose} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
-          Close
-        </button>
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="relative w-full max-w-lg bg-white bg-opacity-20 backdrop-blur-lg rounded-lg overflow-y-auto max-h-[80vh] p-6">
+        <div className="absolute top-4 right-4 text-white hover:text-gray-400 cursor-pointer" onClick={onClose}>
+          <FaTimes size={24} />
+        </div>
+        <h2 className="text-center text-white text-xl font-bold mb-4">Completed Timers</h2>
+        <div className="text-white">
+          <div className="flex justify-between mb-2">
+            <span>Session Name</span>
+            <span>Date</span>
+            <span>Start Time</span>
+            <span>End Time</span>
+          </div>
+          {log.length > 0 ? (
+            log.map((entry, index) => (
+              <div key={index} className="flex justify-between mb-2">
+                <span>{entry.name}</span>
+                <span>{entry.date}</span>
+                <span>{entry.startTime}</span>
+                <span>{entry.endTime}</span>
+              </div>
+            ))
+          ) : (
+            <p>No completed sessions yet.</p>
+          )}
+        </div>
       </div>
     </div>
   );

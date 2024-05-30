@@ -5,6 +5,7 @@ import Timer from './components/Timer';
 import Log from './components/Log';
 import MusicPlayer from './components/MusicPlayer';
 import { FaHistory } from 'react-icons/fa';
+import dayjs from 'dayjs';
 
 const timers = [
   { name: 'Pomodoro Sprint', duration: 25, bg: 'bg-pomodoro' },
@@ -16,9 +17,26 @@ const Home = () => {
   const [selectedTimer, setSelectedTimer] = useState(timers[0]);
   const [log, setLog] = useState([]);
   const [isLogOpen, setIsLogOpen] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+
+  const handleTimerStart = () => {
+    setStartTime(dayjs());
+  };
 
   const handleTimerComplete = (timer) => {
-    setLog([...log, timer.name]);
+    const endTime = dayjs();
+    const date = startTime.format('MMMM D, YYYY');
+    const startTimeFormatted = startTime.format('h:mm A');
+    const endTimeFormatted = endTime.format('h:mm A');
+
+    setLog([...log, {
+      name: timer.name,
+      date: date,
+      startTime: startTimeFormatted,
+      endTime: endTimeFormatted,
+    }]);
+
+    setStartTime(null);
   };
 
   const toggleLog = () => {
@@ -38,15 +56,15 @@ const Home = () => {
             />
           ))}
         </div>
-        <div className="blurred-gui">
-          <div className="log-icon" onClick={toggleLog}>
+        <div className="blurred-gui relative p-4 bg-white bg-opacity-20 backdrop-blur-lg rounded-lg">
+          <div className="log-icon absolute top-4 right-4 text-gray-200 hover:text-gray-400 cursor-pointer" onClick={toggleLog}>
             <FaHistory size={24} />
           </div>
-          <Timer timer={selectedTimer} onComplete={handleTimerComplete} />
+          <Timer timer={selectedTimer} onStart={handleTimerStart} onComplete={handleTimerComplete} />
           <MusicPlayer />
         </div>
       </div>
-      <Log log={log} isOpen={isLogOpen} onClose={toggleLog} />
+      {isLogOpen && <Log log={log} onClose={toggleLog} />}
     </div>
   );
 };
