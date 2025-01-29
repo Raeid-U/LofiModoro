@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# LofiPomodoro
 
-## Getting Started
+LofiPomodoro is a **minimalist Pomodoro timer** built with **Next.js, React, and JSX**. It helps you stay productive with structured focus sessions, break timers, and an integrated **Spotify preview player** for Lofi music.
 
-First, run the development server:
+## Features
+- **Pomodoro Timer (25 minutes)** – Designed for deep work and concentration.
+- **Small Break (5 minutes)** – Short breaks to refresh and reset.
+- **Long Break (15 minutes)** – Longer breaks for relaxation.
+- **Session Log** – Tracks completed focus sessions and breaks.
+- **Spotify Preview Player** – Integrated player featuring the **LofiGirl** playlist.
+- **Smooth UI/UX** – A clean, responsive interface with fluid transitions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tech Stack
+- **Framework:** Next.js  
+- **Frontend:** React, JSX  
+- **State Management:** React Hooks (`useState`, `useEffect`)  
+- **Music API:** Spotify Preview Player  
+- **Styling:** Tailwind CSS (optional)  
+
+## Installation & Setup
+Clone the repository and install dependencies:
+
+```sh
+git clone https://github.com/your-username/LofiPomodoro.git
+cd LofiPomodoro
+npm install  # or yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run the Development Server
+```sh
+npm run dev  # or yarn dev
+```
+Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Spotify Integration
+- The app includes a **Spotify Preview Player** to stream **LofiGirl’s playlist**.
+- Full playback may require logging into a **Spotify Premium account**.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Deployment
+LofiPomodoro can be deployed on **Vercel** with one command:
 
-## Learn More
+```sh
+vercel deploy
+```
+Or connect a GitHub repository and deploy through the [Vercel Dashboard](https://vercel.com/).
 
-To learn more about Next.js, take a look at the following resources:
+## License
+This project is licensed under the **MIT License**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributing
+Contributions are welcome. If you find a bug or have a feature request, open an issue or submit a pull request.
