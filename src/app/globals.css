@@ -4,24 +4,30 @@
 @tailwind utilities;
 
 .bg-pomodoro {
-    background-image: url("./images/pomodoro.jpg");
+    background-image: url("../../public/pomodoro.jpg");
     background-size: cover;
     background-position: center;
-    transition: background-image 0.5s ease-in;
+    transition:
+        background-image 0.5s ease-in-out,
+        opacity 0.5s ease-in-out;
 }
 
 .bg-small-break {
-    background-image: url("./images/small-break.jpg");
+    background-image: url("../../public/break.jpg");
     background-size: cover;
     background-position: center;
-    transition: background-image 0.5s ease-in;
+    transition:
+        background-image 0.5s ease-in-out,
+        opacity 0.5s ease-in-out;
 }
 
 .bg-long-break {
-    background-image: url("./images/long-break.png");
+    background-image: url("../../public/long-break.jpg");
     background-size: cover;
     background-position: center;
-    transition: background-image 0.5s ease-in;
+    transition:
+        background-image 0.5s ease-in-out,
+        opacity 0.5s ease-in-out;
 }
 
 .tab {

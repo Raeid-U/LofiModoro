@@ -1,76 +1,83 @@
-// components/Timer.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
 const Timer = ({ timer, onStart, onComplete }) => {
-  const [timeLeft, setTimeLeft] = useState(timer.duration * 60);
+  const [timeLeft, setTimeLeft] = useState(timer.duration * 60 * 1000); // Convert to milliseconds
   const [isRunning, setIsRunning] = useState(false);
+  const startTimestamp = useRef(null);
+  const intervalRef = useRef(null);
 
   useEffect(() => {
-    setTimeLeft(timer.duration * 60);
-    setIsRunning(false); // Reset running state when timer changes
+    setTimeLeft(timer.duration * 60 * 1000); // Reset when timer changes
+    setIsRunning(false);
+    clearInterval(intervalRef.current);
   }, [timer]);
 
   useEffect(() => {
-    let interval;
     if (isRunning) {
       onStart();
-      interval = setInterval(() => {
-        setTimeLeft((prevTime) => {
-          if (prevTime <= 1) {
-            clearInterval(interval);
-            onComplete(timer);
-            setIsRunning(false);
-            return 0;
-          }
-          return prevTime - 1;
-        });
-      }, 1000);
+      startTimestamp.current = performance.now();
+      intervalRef.current = requestAnimationFrame(updateTimer);
+    } else {
+      cancelAnimationFrame(intervalRef.current);
     }
-    return () => clearInterval(interval);
+    return () => cancelAnimationFrame(intervalRef.current);
   }, [isRunning]);
 
-  const handleStart = () => {
-    setIsRunning(true);
+  const updateTimer = () => {
+    const elapsed = performance.now() - startTimestamp.current;
+    setTimeLeft((prevTime) => {
+      const newTime = Math.max(prevTime - elapsed, 0);
+      if (newTime === 0) {
+        cancelAnimationFrame(intervalRef.current);
+        onComplete(timer);
+        setIsRunning(false);
+      } else {
+        intervalRef.current = requestAnimationFrame(updateTimer);
+      }
+      return newTime;
+    });
+    startTimestamp.current = performance.now();
   };
 
-  const handleStop = () => {
-    setIsRunning(false);
-  };
-
+  const handleStart = () => setIsRunning(true);
+  const handleStop = () => setIsRunning(false);
   const handleReset = () => {
-    setTimeLeft(timer.duration * 60);
+    setTimeLeft(timer.duration * 60 * 1000);
     setIsRunning(false);
   };
 
-  const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  const formatTime = (milliseconds) => {
+    const minutes = Math.floor(milliseconds / 60000);
+    const seconds = Math.floor((milliseconds % 60000) / 1000);
+    const ms = Math.floor((milliseconds % 1000) / 10); // Show two decimal milliseconds
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}.${ms < 10 ? "0" : ""}${ms}`;
   };
 
   return (
-    <div className="text-center text-white">
-      <h2 className="text-2xl font-bold mb-4">{timer.name}</h2>
-      <div className="text-6xl font-bold mb-4">{formatTime(timeLeft)}</div>
+    <div className="text-center text-white p-6 bg-opacity-0 bg-black">
+      <h2 className="text-3xl font-bold mb-4">{timer.name}</h2>
+      <div className="text-6xl font-mono font-bold mb-4 transition-all duration-100 ease-in-out">
+        {formatTime(timeLeft)}
+      </div>
       <div className="flex justify-center space-x-4">
         {!isRunning ? (
           <button
             onClick={handleStart}
-            className="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded"
+            className="px-6 py-3 bg-green-500 hover:bg-green-700 text-white font-bold rounded-lg shadow-md transition-all duration-300 ease-in-out"
           >
             Start
           </button>
         ) : (
           <button
             onClick={handleStop}
-            className="px-4 py-2 bg-red-500 hover:bg-red-700 text-white font-bold rounded"
+            className="px-6 py-3 bg-red-500 hover:bg-red-700 text-white font-bold rounded-lg shadow-md transition-all duration-300 ease-in-out"
           >
-            Stop
+            Pause
           </button>
         )}
         <button
           onClick={handleReset}
-          className="px-4 py-2 bg-gray-500 hover:bg-gray-700 text-white font-bold rounded"
+          className="px-6 py-3 bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-lg shadow-md transition-all duration-300 ease-in-out"
         >
           Reset
         </button>
