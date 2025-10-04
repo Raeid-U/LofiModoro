@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Backgrounds (kept from prior pass) ---------- */
+.bg-pomodoro,
+.bg-small-break,
+.bg-long-break {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 150ms ease;
+}
+.bg-pomodoro {
+    background-image: url("/bg/work-1920.jpg");
+}
+.bg-small-break {
+    background-image: url("/bg/small-1920.jpg");
+}
+.bg-long-break {
+    background-image: url("/bg/long-1920.jpg");
+}
+@media (max-aspect-ratio: 3/4) {
+    .bg-pomodoro {
+        background-image: url("/bg/work-1080x1920.jpg");
+    }
+    .bg-small-break {
+        background-image: url("/bg/small-1080x1920.jpg");
+    }
+    .bg-long-break {
+        background-image: url("/bg/long-1080x1920.jpg");
+    }
+}
+
+/* ---------- Neutral base ---------- */
+.panel {
+    @apply bg-neutral-900/80 text-white border border-neutral-700 shadow-md p-5 rounded-none;
+}
+.panel-narrow {
+    @apply max-w-xl;
+}
+.panel-wide {
+    @apply max-w-3xl;
+}
+.panel-header {
+    @apply flex items-center justify-between gap-2 flex-wrap mb-3;
+}
+
+.tab {
+    @apply px-4 py-2 border border-neutral-700 bg-neutral-800/70 text-neutral-200 hover:bg-neutral-700 focus:outline-none rounded-none;
+}
+.tab-selected {
+    @apply bg-neutral-700 text-white border-neutral-600;
+}
+
+.timer {
+    @apply text-center my-6 text-white;
+}
+.timer-name {
+    @apply text-xl font-semibold;
+}
+.timer-display {
+    @apply text-6xl font-mono font-bold;
+}
+.timer-actions {
+    @apply mt-4 flex flex-wrap items-center justify-center gap-3;
+}
+.timer-button {
+    @apply px-5 py-2.5 rounded-none text-white font-semibold shadow-sm;
+}
+
+.page-shell {
+    @apply min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 py-6;
+}
+
+.spotify-embed {
+    @apply w-full;
+    height: 152px;
+}
+@media (min-width: 1024px) {
+    .spotify-embed {
+        height: 200px;
+    }
+}
+
+/* ---------- Modal polish ---------- */
+.modal-backdrop {
+    @apply fixed inset-0 bg-black/70 z-40;
+}
+.modal-center {
+    @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+}
+.modal-card {
+    @apply w-full max-w-2xl bg-neutral-900 text-neutral-100 border border-neutral-700 shadow-2xl rounded-none;
+}
+.modal-header {
+    @apply flex items-center justify-between px-5 py-4 border-b border-neutral-700;
+}
+.modal-title {
+    @apply text-base font-semibold tracking-wide;
+}
+.modal-body {
+    @apply p-5;
+}
+
+/* ---------- Form & buttons ---------- */
+.input-text {
+    @apply w-full px-3 py-2 border border-neutral-700 bg-neutral-800 text-white placeholder-neutral-400 focus:outline-none focus:border-neutral-500 rounded-none;
+}
+.btn {
+    @apply inline-flex items-center justify-center px-4 py-2 font-semibold rounded-none border;
+}
+.btn-primary {
+    @apply bg-emerald-600 border-emerald-600 text-white hover:bg-emerald-700 hover:border-emerald-700;
+}
+.btn-ghost {
+    @apply bg-neutral-800 border-neutral-700 text-neutral-200 hover:bg-neutral-700;
+}
+.btn:disabled {
+    @apply bg-neutral-700 border-neutral-700 text-neutral-300 cursor-not-allowed;
+}
+
+/* ---------- Table ---------- */
+.table-wrap {
+    @apply overflow-x-auto border border-neutral-700;
+}
+.table {
+    @apply w-full table-fixed text-left;
+}
+.table thead {
+    @apply bg-neutral-800 text-neutral-200;
+}
+.th {
+    @apply py-2 px-3 font-semibold;
+}
+.td {
+    @apply py-2 px-3;
+}
+.tr-odd {
+    @apply odd:bg-neutral-800/60;
+}
+.code {
+    @apply font-mono tabular-nums;
+} /* for timestamps/durations */
+.center-muted {
+    @apply text-center text-neutral-400 py-4;
+}
